@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:local="clr-namespace:FlowListViewExemplo"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView" BackgroundColor="#181818"
+             x:Class="FlowListViewExemplo.MainPage">
+
+     <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Style x:Key="QuemAssisteStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="Margin" Value="0, 12" />
+            </Style>
+
+            <Style x:Key="ProfileItemTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="10" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Start" />
+            </Style>
+            
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label
+                Text="Quem assiste?"
+                Style="{StaticResource QuemAssisteStyle}"/>
+            <Grid 
+                Grid.Row="1"    
+                Padding="48, 0">
+                <flv:FlowListView
+                    FlowItemsSource="{Binding Profiles}"
+                    BackgroundColor="#181818"
+                    FlowColumnCount="2" 
+                    FlowColumnExpand="First"
+                    SeparatorVisibility="None"
+                    HasUnevenRows="True">
+                    <flv:FlowListView.FlowColumnTemplate>
+                        <DataTemplate>
+                            <Grid
+                                HeightRequest="120"
+                                Margin="0, 0, 0, 12">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Image
+                                    Grid.Row="0"
+                                    Source="{Binding Imagem}"/>
+                                <Label 
+                                    Grid.Row="1"
+                                    Text="{Binding Name}"
+                                    Style="{StaticResource ProfileItemTextStyle}"/>
+                                </Grid>
+                        </DataTemplate>
+                    </flv:FlowListView.FlowColumnTemplate>
+                </flv:FlowListView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
